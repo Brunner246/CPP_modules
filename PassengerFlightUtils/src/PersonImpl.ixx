@@ -3,13 +3,14 @@
 // Created by michael.brunner on 14/11/2023.
 //
 
+// module Person: implementation;
 module;
 
 #include <cassert>
 
-export module Person.CPerson;
+export module Person:implementation;
 
-export import Person.IPerson;
+export import :interface; // import the interface module partition
 import std.core;
 import std.memory;
 

@@ -1,6 +1,6 @@
 
 import ModulesIntro.ModuleOne;
-import Person.CPerson;
+import Person;
 import std.memory;
 import std.core;
 
@@ -27,6 +27,15 @@ int main()
 		return aPerson->getFirstName() == lSearchName;
 	});
 	lResult ? std::cout << "Found John" << std::endl : std::cout << "Not found John" << std::endl;
+
+	// decltype(auto)
+	const char* (*lToFuncPtr)(std::string&&)  = +[](std::string&& aText) {
+		return "hello world";
+	};
+	std::cout << lToFuncPtr("hello world") << std::endl;
+
+	auto lSum = Hello::sum(1, 2, 3, 4, 5);
+	std::cout << lSum << std::endl;
 
 	return 0;
 }

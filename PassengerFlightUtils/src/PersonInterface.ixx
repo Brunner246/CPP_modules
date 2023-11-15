@@ -1,9 +1,7 @@
 //
 // Created by michael.brunner on 14/11/2023.
 //
-module;
-
-export module Person.IPerson;
+export module Person:interface;
 
 import std.core;
 

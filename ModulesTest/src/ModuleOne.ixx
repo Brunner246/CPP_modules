@@ -24,6 +24,16 @@ namespace Hello {
 		return a + b;
 	}
 
+	template<typename T>
+	concept Number = std::is_integral_v<T>;
+
+	export template<Number ... T>
+	auto sum(const T... a)
+	{
+		// (v[0] +(v[1] + (v[2] + (v[3] + v[4] + 0)))) right fold
+		return (a + ... + 0);
+	}
+
 	class Passport
 	{
 	private:
