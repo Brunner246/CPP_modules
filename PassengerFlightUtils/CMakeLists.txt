@@ -8,4 +8,9 @@ add_library(${PROJECT_NAME}
         src/PersonInterface.ixx
         src/PersonImpl.ixx
         src/Person.ixx
+        src/Entities/CPassport.ixx
+        src/Entities/CPassenger.ixx
+        src/Entities/CDestination.ixx
+        src/Entities/CAirlineTicket.ixx
+        src/TicketPassengerCollection.ixx
 )

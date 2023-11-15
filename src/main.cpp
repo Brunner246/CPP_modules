@@ -1,9 +1,12 @@
 
 import ModulesIntro.ModuleOne;
 import Person;
+import Passenger;
+import Passport;
 import std.memory;
 import std.core;
-
+import TicketPassengerCollection;
+import AirlineTicket;
 
 int main()
 {
@@ -36,6 +39,20 @@ int main()
 
 	auto lSum = Hello::sum(1, 2, 3, 4, 5);
 	std::cout << lSum << std::endl;
+
+	auto lPassenger = CPassenger("Hans", "Muster", CPassport("CH", 1234));
+	auto lPassport = lPassenger.getPassport();
+	std::cout << lPassport.getPassportNumber() << std::endl;
+	std::cout << lPassport.getCountryCode() << std::endl;
+
+	auto lTicketPassengerCollection = CTicketPassengerCollection();
+	auto lAirlineTicketInfo = CAirlineInfos();
+	{
+		lAirlineTicketInfo.mAirlineName = "Swiss";
+		lAirlineTicketInfo.mSeatNumber = "A1";
+		lAirlineTicketInfo.mFlightNumber = "LX1234";
+	}
+	lTicketPassengerCollection.add(lPassenger, CAirlineTicket(std::move(lAirlineTicketInfo), "7efd65e5-8ebe-4861-8918-1cfb0a3877d2"));
 
 	return 0;
 }
