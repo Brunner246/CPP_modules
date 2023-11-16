@@ -7,12 +7,13 @@
 module;
 
 #include <cassert>
+#include "RandomHeader.h"
 
 export module Person:implementation;
-
 export import :interface; // import the interface module partition
 import std.core;
 import std.memory;
+
 
 
 class CPerson : public Person::IPerson
@@ -29,6 +30,7 @@ public:
 		assert(!mFirstName.empty());
 		assert(!mLastName.empty());
 #endif
+		printSomehting();
 	}
 
 	[[nodiscard]] std::string getFirstName() const override

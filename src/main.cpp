@@ -7,9 +7,12 @@ import std.memory;
 import std.core;
 import TicketPassengerCollection;
 import AirlineTicket;
+import Character;
 
 int main()
 {
+	auto lCharacter = Character("Michael");
+	lCharacter.SayHello();
 	std::cout << "Hello, World!" << std::endl;
 	Hello::hello();
 

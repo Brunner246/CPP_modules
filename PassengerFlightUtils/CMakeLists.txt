@@ -13,4 +13,5 @@ add_library(${PROJECT_NAME}
         src/Entities/CDestination.ixx
         src/Entities/CAirlineTicket.ixx
         src/TicketPassengerCollection.ixx
+        src/RandomHeader.h
 )
