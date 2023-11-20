@@ -12,4 +12,5 @@ add_library(${PROJECT_NAME}
         src/Math.ixx
         src/Character.ixx
         src/Character.cpp
+        src/RandomTests.ixx
 )

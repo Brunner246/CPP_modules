@@ -4,5 +4,5 @@
 
 export module Person;
 
-export import :interface; // import the interface module partition
-export import :implementation; // import the implementation module partition
+export import Person.interface; // import the interface module partition
+export import Person.implementation; // import the implementation module partition

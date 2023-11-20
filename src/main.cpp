@@ -8,13 +8,106 @@ import std.core;
 import TicketPassengerCollection;
 import AirlineTicket;
 import Character;
+import RandomTests;
+
+struct WeatherData final
+{
+	int mTemperature{};
+	int mHumidity{};
+	int mAirPressure{};
+
+	auto operator<=>(const WeatherData &aOther) const
+	{
+		if (mTemperature < aOther.mTemperature) {
+			return std::strong_ordering::less;
+		} else if (mTemperature > aOther.mTemperature) {
+			return std::strong_ordering::greater;
+		} else {
+			return std::strong_ordering::equivalent;
+		}
+	}
+};
+
+constexpr auto CountValues(auto container, auto cmp)
+{
+	return std::count_if(begin(container), end(container), cmp);
+}
+
 
 int main()
 {
+	{
+		auto lResult = recursiveExponentiation(2, 3);
+		std::cout << lResult << std::endl;
+
+		auto lMultiplicationResult = multiply(2, 3);
+		std::cout << "Result is : " << lMultiplicationResult << std::endl;
+	}
+	constexpr auto minVal = CountValues(std::array{-10, 6, 8, 4, -5, 2, 4, 6},
+	                                    [](auto a) { return a >= 0; }
+	);
+	std::cout << "Integers >= = : " << minVal << std::endl;
+
+
+	{
+		std::vector <WeatherData> lWeatherDataList{
+				{30,  60, 1200},
+				{20,  50, 1100},
+				{10,  40, 1000},
+				{0,   30, 900},
+				{-10, 20, 800},
+				{-20, 10, 700},
+		};
+		auto lVar = lWeatherDataList | std::views::transform([](const WeatherData &wd) { return wd.mTemperature; });
+
+		for (auto il: lVar) {
+			std::cout << il << std::endl;
+		}
+
+		std::map<std::string, int> cpp_standards
+				{
+						{"C++98", 1988},
+						{"C++03", 2003},
+						{"C++11", 2011},
+						{"C++14", 2014},
+						{"C++17", 2017},
+						{"c++20", 2020}
+				};
+
+		for (int const year: std::views::elements<1>(cpp_standards)) {
+			std::cout << year << ' '; // 2003 2011 2014 2017 1988 2020
+		}
+
+		std::cout << '\n';
+
+		std::vector<std::pair<std::string, int>> windows
+				{
+						{"Windows 1.0", 1985},
+						{"Windows 2.0", 1987},
+						{"Windows 3.0", 1990},
+						{"Windows 3.1", 1992},
+						{"Windows NT 3.1", 1993},
+						{"Windows 95", 1995},
+						{"Windows NT 4.0", 1996},
+						{"Windows 98", 1998},
+						{"Windows 2000", 2000}
+				};
+
+		for (int year : std::views::elements<1>(windows))
+		{
+			std::cout << year << ' ';
+		}
+		std::cout << '\n';
+	}
+
+
 	auto lCharacter = Character("Michael");
 	lCharacter.SayHello();
 	std::cout << "Hello, World!" << std::endl;
 	Hello::hello();
+
+	std::ranges::filter_view lFilterView{std::array{-10, 6, 8, 4, -5, 2, 4, 6}, [](auto a) { return a > 0; }};
+	std::cout << std::ranges::count(lFilterView, 4) << std::endl;
 
 	std::cout << Hello::add(1.0f, 2.5f) << std::endl;
 
@@ -35,7 +128,7 @@ int main()
 	lResult ? std::cout << "Found John" << std::endl : std::cout << "Not found John" << std::endl;
 
 	// decltype(auto)
-	const char* (*lToFuncPtr)(std::string&&)  = +[](std::string&& aText) {
+	const char* (* lToFuncPtr)(std::string &&) = +[](std::string &&aText) {
 		return "hello world";
 	};
 	std::cout << lToFuncPtr("hello world") << std::endl;

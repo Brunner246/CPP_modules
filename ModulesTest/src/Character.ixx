@@ -8,6 +8,7 @@ export module Character;
 
 import std.core;
 
+
 // Definition
 export class Character {
 public:
@@ -18,6 +19,8 @@ public:
 private:
 	std::string Name;
 };
+
+
 //
 //export module Character;
 //import <string>;

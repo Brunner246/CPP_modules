@@ -9,8 +9,8 @@ module;
 #include <cassert>
 #include "RandomHeader.h"
 
-export module Person:implementation;
-export import :interface; // import the interface module partition
+export module Person.implementation;
+import Person.interface; // import the interface module partition
 import std.core;
 import std.memory;
 
